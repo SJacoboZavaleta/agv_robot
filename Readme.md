@@ -3,7 +3,7 @@
 ### Máster en Robótica y Automatización
 #### Universidad Complutense de Madrid
 >> Autor: Sergio Jacobo Zavaleta
->> Date: 25/02/2025
+>> Date: 21/03/2025
 >> 100514566@alumnos.uc3m.es
 
 ## Proceso de instalación
@@ -11,7 +11,7 @@
 ### Paso 0: Clonar el repositorio
 
 ```bash
-git https://github.com/SJacoboZavaleta/land_robot.git
+git https://github.com/SJacoboZavaleta/agv_robot.git
 cd land_robot
 ```
 
@@ -114,30 +114,60 @@ Webots necesita saber qué intérprete de Python usar. Aquí te explico cómo co
 Para que tu proyecto sea portable, es importante organizar los archivos de manera clara. Aquí tienes una estructura sugerida:
 
 ```
-/moose_project
+agv_robot/
+├── controllers/
+│   ├── moose_controller/
+│   │   ├── moose_controller.py
+│   │   └── paths/
+│   │       ├── path_combined_purchena_h.csv
+│   │       ├── path_combined_purchena_s.csv
+│   │       ├── path_combined_purchena_z.csv
+│   │       ├── path_potential_energy_purchena_h.csv
+│   │       ├── path_potential_energy_purchena_s.csv
+│   │       ├── path_potential_energy_purchena_z.csv
+│   │       ├── path_slope_purchena_h.csv
+│   │       ├── path_slope_purchena_s.csv
+│   │       └── path_slope_purchena_z.csv
+│   │       └── ...                   # Otros archivos de trayectorias
+│   │
+│   └── moose_supervisor/
+│       ├── moose_supervisor.py
+│       └── paths/
+│           ├── path_combined_purchena_h.csv
+│           ├── path_combined_purchena_s.csv
+│           ├── path_combined_purchena_z.csv
+│           ├── path_potential_energy_purchena_h.csv
+│           ├── path_potential_energy_purchena_s.csv
+│           ├── path_potential_energy_purchena_z.csv
+│           ├── path_slope_purchena_h.csv
+│           ├── path_slope_purchena_s.csv
+│           └── path_slope_purchena_z.csv
+│           └── ...                   # Otros archivos de trayectorias
 │
-├── /venv                   # Entorno virtual (si usas venv)
-├── /src                    # Código fuente
-│   ├── controller.py       # Controlador principal
-│   ├── utils.py            # Funciones auxiliares
-│   └── ...                 # Otros archivos
+├── worlds/
+│   ├── land.wbt
+│   ├── .land.jpg
+│   └── uc3m_logo.png
+│   └── ...                           # Otros mundos o recursos
 │
-├── /worlds                 # Mundos de Webots
-│   ├── moose_world.wbt     # Mundo principal
-│   └── ...                 # Otros mundos
+├── results/
+│   ├── simulation_results_1_1.txt
+│   ├── simulation_results_2_2.txt
+│   └── simulation_results_3_3.txt
+│   └── ...                           # Otros archivos de resultados
 │
-├── /paths                  # Archivos de trayectorias
-│   ├── path.csv            # Trayectoria en CSV
-│   └── ...                 # Otros archivos
+├── requirements.txt
 │
-├── requirements.txt        # Dependencias de Python
-├── README.md               # Documentación del proyecto
-└── .gitignore              # Archivos ignorados por Git
+└── README.md
 ```
 
 #### Paso 5: Ejecutar el mundo en Webots:
 
-- Abrir `worlds/moose_world.wbt`.
+- Abrir `worlds/moose_world.wbt`. Presionar pausa y luego retroceso inicial de la simulación.
+- Ejecutar la simulación.  
+- Abrir `moose_controller.py` y `moose_supervisor.py` y definir la ruta del controlador y supervisor respectivamente (ambos por igual).  
+   - Escoger `cost_function` entre 1 (ruta 1), 2 (ruta 2) y 3 (ruta 3).
+   - Escoger `slope_method` entre 1 (pendiente tipo Sobel), 2 (pendiente tipo Horn) y 3 (pendiente tipo Zevenbergen). 
 - Ejecutar la simulación.
 
 
