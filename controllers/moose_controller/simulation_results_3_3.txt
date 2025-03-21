@@ -1,0 +1,2 @@
+Tiempo total de simulación: 591.94 segundos
+Error promedio (alpha): 0.2134 radianes
